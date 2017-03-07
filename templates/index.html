@@ -1,0 +1,131 @@
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="{{ static_url("spectre.min.css") }}">
+    <link rel="stylesheet" href="{{ static_url("sample.css") }}">
+</head>
+<body>
+<!--<ul class="tab tab-block">-->
+    <!--<li class="tab-item active">-->
+        <!--<a href="#">Channel1</a>-->
+    <!--</li>-->
+    <!--<li class="tab-item">-->
+        <!--<a href="#">Channel2</a>-->
+    <!--</li>-->
+    <!--<li class="tab-item">-->
+        <!--<a href="#">Channel3</a>-->
+    <!--</li>-->
+    <!--<li class="tab-item">-->
+        <!--<a href="#">Channel4</a>-->
+    <!--</li>-->
+<!--</ul>-->
+<div class="container">
+    <div class="columns">
+        <div class="column col-6">
+            <div class="input-group">
+            <input class="form-input" type="text" placeholder="Message" name="message_send" id="box_send" />
+            <button class="btn btn-primary modal-open input-group-btn" id="message_send">Send</button>
+            </div>
+        </div>
+
+        <div class="column col-6">
+            <div class="btn-group btn-group-block">
+            <button class="btn btn-primary" id="port_close">Close</button>
+            <!--<button class="btn btn-primary" id="port_open">Open</button>-->
+            <button class="btn btn-primary" id="log_start">Log</button>
+            <button class="btn btn-primary modal_open" id="setting">Settings</button>
+            </div>
+        </div>
+        <div class="column col-12">
+            <pre placeholder="Textarea" readonly="readonly" class="console"></pre>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="modal active">
+    <div class="modal-overlay"></div>
+    <div class="modal-container">
+        <div class="modal-header">
+            <button class="btn btn-clear float-right modal_close"></button>
+            <div class="modal-title">Settings</div>
+        </div>
+        <div class="modal-body">
+            <div class="content">
+                <!-- content here -->
+                <form>
+                    <!-- port list -->
+                    <div class="form-group">
+                        <label class="form-label">Port List</label>
+                        <select class="form-select" id="port_list" name="port">
+                            {% for port in ports %}
+                            <option value={{escape(port)}}>{{escape(port)}}</option>
+                            {% end %}
+                        </select>
+                    </div>
+                    <!-- baudrate -->
+                    <div class="form-group">
+                        <label class="form-label">Baudrate</label>
+                        <select class="form-select" name="baudrate">
+                            <option value="1200">1200</option>
+                            <option value="2400">2400</option>
+                            <option value="4800">4800</option>
+                            <option value="9600" selected>9600</option>
+                            <option value="19200">19200</option>
+                            <option value="38400">38400</option>
+                            <option value="57600">57600</option>
+                            <option value="115200">115200</option>
+                        </select>
+                    </div>
+                    <!-- form radio control -->
+                    <div class="form-group">
+                        <label class="form-label">Databit</label>
+                        <label class="form-radio">
+                            <input type="radio" name="databit" value="7"/>
+                            <i class="form-icon"></i> 7bit
+                        </label>
+                        <label class="form-radio">
+                            <input type="radio" name="databit" value="8" checked />
+                            <i class="form-icon"></i> 8bit
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Stopbit</label>
+                        <label class="form-radio">
+                            <input type="radio" name="stopbit" value="1" checked />
+                            <i class="form-icon"></i> 1bit
+                        </label>
+                        <label class="form-radio">
+                            <input type="radio" name="stopbit" value="2"/>
+                            <i class="form-icon"></i> 2bit
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Parity</label>
+                        <label class="form-radio">
+                            <input type="radio" name="parity" value="N" checked />
+                            <i class="form-icon"></i> None
+                        </label>
+                        <label class="form-radio">
+                            <input type="radio" name="parity" value="O"/>
+                            <i class="form-icon"></i> Odd
+                        </label>
+                        <label class="form-radio">
+                            <input type="radio" name="parity" value="E"/>
+                            <i class="form-icon"></i> Even
+                        </label>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <!--<button class="btn btn-link modal-close">Close</button>-->
+            <button class="btn btn-primary" id="port_open">Connect</button>
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="{{ static_url("sample.js") }}"></script>
+</html>
