@@ -9,10 +9,8 @@ if __name__ == '__main__':
 
     time.sleep(0.5)
 
-    subprocess.call('open -a ' + os.path.join(os.path.dirname(sys.argv[0]), "SerialTool.app"),shell=True)
+    # subprocess.call('open -a ' + os.path.join(os.path.dirname(sys.argv[0]), "SerialTool.app"),shell=True)
 
     ws = SerialWs('ws://localhost:8080/ws', protocols=['http-only', 'chat'])
     ws.connect()
     ws.run_forever()
-
-
